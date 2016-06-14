@@ -1,5 +1,4 @@
 //business logic
-
 var balance = 0;
 
 function BankAccount (name, initialdeposit, balance, deposit, withdrawal) {
@@ -11,23 +10,18 @@ function BankAccount (name, initialdeposit, balance, deposit, withdrawal) {
 }
 
 //set object Prototypes
-
 BankAccount.prototype.addDeposit = function () {
   balance += this.userDeposit;
 }
-
 BankAccount.prototype.subtractWithdrawal = function () {
   balance -= this.userWithdrawal;
 }
-
 var resetFields = function () {
   $("input#deposit").val("");
   $("input#withdrawal").val("");
 }
 
-
-
-// user Logic
+//user Logic
 $(function(){
   $("form#register").submit(function(event){
     event.preventDefault();
@@ -46,7 +40,6 @@ $(function(){
         event.preventDefault();
 
         var userDeposit = parseInt($(".deposit").val());
-
         userInfo.userDeposit = userDeposit;
         userInfo.addDeposit();
         $("#balance").text("$" + balance.toFixed(2));
@@ -59,7 +52,6 @@ $(function(){
         var userWithdrawal = parseInt($(".withdrawal").val());
         userInfo.userWithdrawal = userWithdrawal;
         userInfo.subtractWithdrawal();
-
         $("#balance").text("$" + balance.toFixed(2));
 
       });
