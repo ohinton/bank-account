@@ -20,6 +20,13 @@ BankAccount.prototype.subtractWithdrawal = function () {
   balance -= this.userWithdrawal;
 }
 
+var resetFields = function () {
+  $("input#deposit").val("");
+  $("input#withdrawal").val("");
+}
+
+
+
 // user Logic
 $(function(){
   $("form#register").submit(function(event){
@@ -31,24 +38,31 @@ $(function(){
 
     var userInfo = new BankAccount(userName, initialDeposit, balance);
 
+    $("#balance-output").show();
     $("#balance").text("$" + balance.toFixed(2));
+    $("#userName").text(userName);
 
-
-      $("form#updateBalance").submit(function(event){
+      $("form#submitDeposit").submit(function(event){
         event.preventDefault();
-debugger;
+
         var userDeposit = parseInt($(".deposit").val());
-        var userWithdrawal = parseInt($(".withdrawal").val());
 
         userInfo.userDeposit = userDeposit;
-
-        userInfo.userWithdrawal = userWithdrawal;
-
         userInfo.addDeposit();
+        $("#balance").text("$" + balance.toFixed(2));
+      });
+      resetFields();
+
+      $("form#submitWithdrawal").submit(function(event){
+        event.preventDefault();
+
+        var userWithdrawal = parseInt($(".withdrawal").val());
+        userInfo.userWithdrawal = userWithdrawal;
         userInfo.subtractWithdrawal();
 
         $("#balance").text("$" + balance.toFixed(2));
 
       });
+      resetFields();
   });
 });
