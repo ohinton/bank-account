@@ -35,6 +35,7 @@ $(function(){
     $("#balance-output").show();
     $("#balance").text("$" + balance.toFixed(2));
     $("#userName").text(userName);
+    $("form#register").trigger('reset');
 
       $("form#submitDeposit").submit(function(event){
         event.preventDefault();
@@ -42,7 +43,10 @@ $(function(){
         var userDeposit = parseInt($(".deposit").val());
         userInfo.userDeposit = userDeposit;
         userInfo.addDeposit();
+
         $("#balance").text("$" + balance.toFixed(2));
+        $("form#submitDeposit").trigger('reset');
+
       });
       resetFields();
 
@@ -52,7 +56,9 @@ $(function(){
         var userWithdrawal = parseInt($(".withdrawal").val());
         userInfo.userWithdrawal = userWithdrawal;
         userInfo.subtractWithdrawal();
+
         $("#balance").text("$" + balance.toFixed(2));
+        $("form#submitWithdrawal").trigger('reset');
 
       });
       resetFields();
